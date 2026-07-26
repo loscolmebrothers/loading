@@ -4,7 +4,7 @@ import type { LoadingHandle, LoadingProps } from "./types";
 import { DEFAULT_SLICES } from "./defaultAssets";
 
 export const Loading = forwardRef<LoadingHandle, LoadingProps>(
-  ({ slices = DEFAULT_SLICES, className = "", duration, onFinish }, ref) => {
+  ({ slices = DEFAULT_SLICES, className = "", duration, onFinish, inverted }, ref) => {
     const overlayRef = useRef<HTMLDivElement>(null);
     const sliceRefs = useRef<(HTMLDivElement | null)[]>([]);
     const finishedRef = useRef(false);
@@ -109,7 +109,7 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
         ctx.revert();
         if (durationTimerRef.current) clearTimeout(durationTimerRef.current);
       };
-    }, [slices, duration]);
+    }, [slices, duration, inverted]);
 
     useImperativeHandle(ref, () => ({
       finish: (onComplete?: () => void) => {
@@ -135,6 +135,7 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
               alt={slice.alt ?? ""}
               draggable={false}
               className="h-9 w-auto select-none sm:h-11"
+              style={inverted ? { filter: "invert(1)" } : undefined}
             />
           </div>
         ))}

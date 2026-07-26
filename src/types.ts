@@ -8,6 +8,7 @@ export interface LoadingProps {
   className?: string;
   duration?: number;
   onFinish?: () => void;
+  inverted?: boolean;
 }
 
 export type LoadingHandle = {

@@ -9,6 +9,7 @@ interface LoadingProps {
     className?: string;
     duration?: number;
     onFinish?: () => void;
+    inverted?: boolean;
 }
 type LoadingHandle = {
     finish: (onComplete?: () => void) => void;

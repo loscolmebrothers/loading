@@ -13,7 +13,7 @@ var DEFAULT_SLICES = [
 // src/Loading.tsx
 import { jsx } from "react/jsx-runtime";
 var Loading = forwardRef(
-  ({ slices = DEFAULT_SLICES, className = "", duration, onFinish }, ref) => {
+  ({ slices = DEFAULT_SLICES, className = "", duration, onFinish, inverted }, ref) => {
     const overlayRef = useRef(null);
     const sliceRefs = useRef([]);
     const finishedRef = useRef(false);
@@ -106,7 +106,7 @@ var Loading = forwardRef(
         ctx.revert();
         if (durationTimerRef.current) clearTimeout(durationTimerRef.current);
       };
-    }, [slices, duration]);
+    }, [slices, duration, inverted]);
     useImperativeHandle(ref, () => ({
       finish: (onComplete) => {
         exitFnRef.current?.(onComplete);
@@ -130,7 +130,8 @@ var Loading = forwardRef(
                 src: slice.src,
                 alt: slice.alt ?? "",
                 draggable: false,
-                className: "h-9 w-auto select-none sm:h-11"
+                className: "h-9 w-auto select-none sm:h-11",
+                style: inverted ? { filter: "invert(1)" } : void 0
               }
             )
           },
