@@ -116,22 +116,22 @@ var Loading = forwardRef(
       "div",
       {
         ref: overlayRef,
-        className: `fixed w-10 inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`,
+        className: `fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`,
+        style: inverted ? { filter: "invert()" } : void 0,
         children: slices.map((slice, i) => /* @__PURE__ */ jsx(
           "div",
           {
             ref: (el) => {
               sliceRefs.current[i] = el;
             },
-            className: "opacity-0",
+            className: "opacity-0 max-w-3",
             children: /* @__PURE__ */ jsx(
               "img",
               {
                 src: slice.src,
                 alt: slice.alt ?? "",
                 draggable: false,
-                className: "h-9 w-auto select-none sm:h-11",
-                style: inverted ? { background: "red" } : void 0
+                className: "h-9 w-auto select-none sm:h-11"
               }
             )
           },
