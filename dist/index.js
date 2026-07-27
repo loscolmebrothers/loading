@@ -117,7 +117,7 @@ var Loading = forwardRef(
       {
         ref: overlayRef,
         className: `fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`,
-        style: inverted ? { filter: "invert()" } : void 0,
+        style: inverted ? { filter: "invert()", maxWidth: 400 } : void 0,
         children: slices.map((slice, i) => /* @__PURE__ */ jsx(
           "div",
           {

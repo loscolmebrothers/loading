@@ -121,7 +121,7 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
       <div
         ref={overlayRef}
         className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`}
-        style={inverted ? { filter: "invert()" } : undefined}
+        style={inverted ? { filter: "invert()", maxWidth: 400 } : undefined}
       >
         {slices.map((slice, i) => (
           <div
