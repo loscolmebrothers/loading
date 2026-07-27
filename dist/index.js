@@ -124,14 +124,14 @@ var Loading = forwardRef(
             ref: (el) => {
               sliceRefs.current[i] = el;
             },
-            className: "opacity-0 max-w-3",
+            className: "opacity-0",
             children: /* @__PURE__ */ jsx(
               "img",
               {
                 src: slice.src,
                 alt: slice.alt ?? "",
                 draggable: false,
-                className: "h-9 w-auto select-none sm:h-11"
+                className: "h-6 w-auto select-none sm:h-11"
               }
             )
           },
