@@ -120,7 +120,7 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
     return (
       <div
         ref={overlayRef}
-        className={`fixed max-w-md inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`}
+        className={`fixed w-10 inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`}
       >
         {slices.map((slice, i) => (
           <div
@@ -135,7 +135,7 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
               alt={slice.alt ?? ""}
               draggable={false}
               className="h-9 w-auto select-none sm:h-11"
-              style={inverted ? { filter: "invert(1)" } : undefined}
+              style={inverted ? { background: "red" } : undefined}
             />
           </div>
         ))}
