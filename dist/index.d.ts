@@ -7,6 +7,7 @@ interface LoadingSlice {
 interface LoadingProps {
     slices?: LoadingSlice[];
     className?: string;
+    size?: number | string;
     duration?: number;
     onFinish?: () => void;
     inverted?: boolean;

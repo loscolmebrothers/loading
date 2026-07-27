@@ -8,17 +8,9 @@ GSAP-powered loading overlay with staggered slice animations. Stacks image "slic
 pnpm add @loscolmebrothers/loading
 ```
 
-Git dependency (requires SSH access to `loscolmebrothers/loading`):
-
-```json
-{
-  "dependencies": {
-    "@loscolmebrothers/loading": "git+ssh://git@github.com/loscolmebrothers/loading.git"
-  }
-}
-```
-
-### Peer dependencies
+Styles are self-contained — the component injects its own scoped CSS at import
+time, so **no Tailwind and no separate stylesheet import are required**. Peer
+dependencies:
 
 ```json
 {
@@ -69,6 +61,7 @@ ref.current?.finish();
 | ----------- | --------------------------------- | ---------------- | ------------------------------------------------ |
 | `slices`    | `LoadingSlice[]`                  | LOS / COLME / BROTHERS | Images stacked vertically                   |
 | `className` | `string`                          | `""`             | Extra classes on the overlay                     |
+| `size`      | `number \| string`                | `24`             | Slice image height (`24` → `24px`; or any CSS length like `"1.5rem"`). Width auto-scales. |
 | `duration`  | `number` (ms)                     | `undefined`      | Auto-finish after N ms. Omit for trigger mode.   |
 | `onFinish`  | `() => void`                      | `undefined`      | Called when loading completes (both modes)       |
 
@@ -90,4 +83,5 @@ pnpm build     # tsc → dist/
 pnpm dev       # watch mode
 ```
 
-Source lives in `src/`, compiled output in `dist/` (committed for consumer convenience — no build-on-install needed).
+Source lives in `src/`, compiled output in `dist/`. `npm publish` runs the
+`prepublishOnly` build hook, so the registry tarball always ships a fresh build.

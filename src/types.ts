@@ -6,6 +6,7 @@ export interface LoadingSlice {
 export interface LoadingProps {
   slices?: LoadingSlice[];
   className?: string;
+  size?: number | string;
   duration?: number;
   onFinish?: () => void;
   inverted?: boolean;

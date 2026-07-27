@@ -1,9 +1,11 @@
 {
   "name": "@loscolmebrothers/loading",
-  "version": "1.0.6",
-  "description": "GSAP-powered loading overlay with staggered slice animations",
+  "version": "1.0.7",
+  "description": "GSAP-powered loading overlay with staggered slice animations — self-contained styles, no Tailwind required",
   "type": "module",
+  "access": "public",
   "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
@@ -11,9 +13,17 @@
       "import": "./dist/index.js"
     }
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "prepublishOnly": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "gsap": ">=3.12",

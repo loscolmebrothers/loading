@@ -3,8 +3,46 @@ import { gsap } from "gsap";
 import type { LoadingHandle, LoadingProps } from "./types";
 import { DEFAULT_SLICES } from "./defaultAssets";
 
+const STYLES = `
+.los-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.los-loading__slice {
+  opacity: 0;
+  margin: 2px;
+}
+.los-loading__img {
+  display: block;
+  width: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+`;
+
+let stylesInjected = false;
+function injectStyles() {
+  if (stylesInjected || typeof document === "undefined") return;
+  if (document.querySelector("style[data-los-loading]")) {
+    stylesInjected = true;
+    return;
+  }
+  const style = document.createElement("style");
+  style.setAttribute("data-los-loading", "");
+  style.textContent = STYLES;
+  document.head.appendChild(style);
+  stylesInjected = true;
+}
+injectStyles();
+
 export const Loading = forwardRef<LoadingHandle, LoadingProps>(
-  ({ slices = DEFAULT_SLICES, className = "", duration, onFinish, inverted }, ref) => {
+  ({ slices = DEFAULT_SLICES, className = "", size = 48, duration, onFinish, inverted }, ref) => {
     const overlayRef = useRef<HTMLDivElement>(null);
     const sliceRefs = useRef<(HTMLDivElement | null)[]>([]);
     const finishedRef = useRef(false);
@@ -117,11 +155,12 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
       },
     }));
 
+    const imgHeight = typeof size === "number" ? `${size}px` : size;
+
     return (
       <div
         ref={overlayRef}
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`}
-        style={inverted ? { filter: "invert()", maxWidth: 400 } : undefined}
+        className={`los-loading${className ? ` ${className}` : ""}`}
       >
         {slices.map((slice, i) => (
           <div
@@ -129,14 +168,15 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
             ref={(el) => {
               sliceRefs.current[i] = el;
             }}
-            className="opacity-0 m-2"
+            className="los-loading__slice"
+            style={inverted ? { filter: "invert()" } : undefined}
           >
             <img
               src={slice.src}
               alt={slice.alt ?? ""}
               draggable={false}
-              className="h-6 w-auto select-none sm:h-7"
-
+              className="los-loading__img"
+              style={{ height: imgHeight }}
             />
           </div>
         ))}
