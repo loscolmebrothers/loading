@@ -1,6 +1,6 @@
 {
   "name": "@loscolmebrothers/loading",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GSAP-powered loading overlay with staggered slice animations",
   "type": "module",
   "main": "./dist/index.js",

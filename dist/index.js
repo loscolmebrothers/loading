@@ -116,7 +116,7 @@ var Loading = forwardRef(
       "div",
       {
         ref: overlayRef,
-        className: `fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`,
+        className: `fixed max-w-md inset-0 z-40 flex flex-col items-center justify-center gap-1 bg-white ${className}`,
         children: slices.map((slice, i) => /* @__PURE__ */ jsx(
           "div",
           {
