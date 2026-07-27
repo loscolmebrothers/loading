@@ -129,13 +129,13 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
             ref={(el) => {
               sliceRefs.current[i] = el;
             }}
-            className="opacity-0"
+            className="opacity-0 m-2"
           >
             <img
               src={slice.src}
               alt={slice.alt ?? ""}
               draggable={false}
-              className="h-6 w-auto select-none sm:h-11"
+              className="h-6 w-auto select-none sm:h-7"
 
             />
           </div>
