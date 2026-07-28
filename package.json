@@ -1,6 +1,6 @@
 {
   "name": "@loscolmebrothers/loading",
-  "version": "1.0.7",
+  "version": "1.1.2",
   "description": "GSAP-powered loading overlay with staggered slice animations — self-contained styles, no Tailwind required",
   "type": "module",
   "access": "public",

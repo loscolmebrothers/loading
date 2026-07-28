@@ -135,11 +135,6 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
               overwrite: true,
             },
             "-=0.05",
-          )
-          .to(
-            overlayRef.current,
-            { opacity: 0, duration: 0.3, ease: "power2.inOut" },
-            "-=0.15",
           );
       };
 
@@ -161,6 +156,16 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
       <div
         ref={overlayRef}
         className={`los-loading${className ? ` ${className}` : ""}`}
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 40,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "2px",
+        }}
       >
         {slices.map((slice, i) => (
           <div
@@ -169,14 +174,18 @@ export const Loading = forwardRef<LoadingHandle, LoadingProps>(
               sliceRefs.current[i] = el;
             }}
             className="los-loading__slice"
-            style={inverted ? { filter: "invert()" } : undefined}
+            style={{
+              opacity: 0,
+              margin: "2px",
+              ...(inverted ? { filter: "invert()" } : {}),
+            }}
           >
             <img
               src={slice.src}
               alt={slice.alt ?? ""}
               draggable={false}
               className="los-loading__img"
-              style={{ height: imgHeight }}
+              style={{ height: imgHeight, display: "block", userSelect: "none" }}
             />
           </div>
         ))}
